@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-// এখানে পরিবর্তনটি দেখুন: ব্র্যাকেট যোগ করা হয়েছে
 const { Browserbase } = require('@browserbasehq/sdk');
 const { chromium } = require('playwright-core');
 
@@ -8,14 +7,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// কনস্ট্রাক্টর ইনিশিয়ালাইজেশন
-const bb = new Browserbase({ 
-  apiKey: process.env.BROWSERBASE_API_KEY 
-});
+const bb = new Browserbase({ apiKey: process.env.BROWSERBASE_API_KEY });
 
 app.post('/run-bot', async (req, res) => {
     const { email } = req.body;
-    console.log(`Cloud request for: ${email}`);
+    console.log(`Cloud bot request for: ${email}`);
     try {
         const session = await bb.sessions.create({
             projectId: process.env.BROWSERBASE_PROJECT_ID,
@@ -29,7 +25,7 @@ app.post('/run-bot', async (req, res) => {
                 );
                 const page = await browser.contexts()[0].newPage();
                 await page.goto('https://mail.google.com'); 
-                console.log(`Bot active in cloud for ${email}`);
+                console.log(`Success: Bot active in cloud for ${email}`);
             } catch (e) {
                 console.error("Automation error:", e.message);
             }
