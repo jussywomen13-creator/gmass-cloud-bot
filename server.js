@@ -1,12 +1,14 @@
 const express = require('express');
 const cors = require('cors');
-const Browserbase = require('@browserbasehq/sdk');
+// এখানে পরিবর্তন করা হয়েছে: { Browserbase } ব্যবহার করা হয়েছে
+const { Browserbase } = require('@browserbasehq/sdk');
 const { chromium } = require('playwright-core');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+// কনস্ট্রাক্টর এখন কাজ করবে
 const bb = new Browserbase({ apiKey: process.env.BROWSERBASE_API_KEY });
 
 app.post('/run-bot', async (req, res) => {
