@@ -1,16 +1,17 @@
 {
-  "name": "gmass-cloud-bot",
+  "name": "cloud-browserbase-bot",
   "version": "1.0.0",
-  "private": true,
   "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
   "engines": {
     "node": "20.x"
   },
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
+    "@browserbasehq/sdk": "^1.0.0",
     "cors": "^2.8.5",
-    "express": "^4.21.2"
+    "express": "^4.18.2",
+    "playwright-core": "^1.40.0"
   }
 }
